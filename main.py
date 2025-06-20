@@ -9,7 +9,7 @@ def index():
 
 @app.route("/zeitgeist")
 def company():
-     return render_template('static/html/zeitgeist.html')
+     return render_template('static/html/business/zeitgeist.html')
 
 @app.route("/pgp")
 def encrypt():

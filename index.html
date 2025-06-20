@@ -10,28 +10,7 @@
   <div class="main">
     <header>
       <h1>Dominik Stipić</h1>
-      <img src="static/figs/me.jpg" width="20%">
-
-      <script>
-          function setGradientBackground(elementId, gradientString) {
-          const element = document.getElementById(elementId);
-            if (element) {
-              element.style.backgroundImage = gradientString;
-            }
-          }
-
-          const myDiv = document.createElement('div');
-          myDiv.id = 'gradientDiv';
-          myDiv.style.width = '200px';
-          myDiv.style.height = '100px';
-          document.body.appendChild(myDiv);
-
-          const linearGradientCSS = 'linear-gradient(to right, red, blue, green)';
-          setGradientBackground('gradientDiv', linearGradientCSS);
-
-          const radialGradientCSS = 'radial-gradient(circle, yellow, orange, red)';
-s      </script>
-
+      <img id="divImg" src="static/figs/me.jpg" width="20%">
     </header>
 
     <h2>About Me</h2>
@@ -60,6 +39,9 @@ s      </script>
       </li>
       <li>
         <a href="static/html/essays.html">essays</a>
+      </li>
+      <li>
+        <a href="static/html/business/zeitgeist.html">zeitgeist</a>
       </li>
     </ul>
 <br>
@@ -117,6 +99,28 @@ s      </script>
 <br>
 
 ----------------------------------------------------------------------------
+
+
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+      const image = document.getElementById('divImg');
+      let opacity = 0;
+      const duration = 3000; 
+      const startTime = performance.now();
+      function animateFadeIn(currentTime) {
+          const elapsedTime = currentTime - startTime;
+          if (elapsedTime < duration) {
+              opacity = elapsedTime / duration; 
+              image.style.opacity = opacity;
+              requestAnimationFrame(animateFadeIn); 
+          } else {
+              image.style.opacity = 1; 
+          }
+      }
+      requestAnimationFrame(animateFadeIn);
+  });
+
+</script>
 
 
 </body>
