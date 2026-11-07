@@ -1,21 +1,12 @@
-from flask import Flask, render_template, send_file
-from waitress import serve
+from fastapi import FastAPI, UploadFile, File, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 
-app = Flask(__name__, template_folder=".")
+app = FastAPI()
 
-@app.route("/")
-def index():
-     return render_template('index.html')
+tempatles = Jinja2Templates(directory="templates")
 
-@app.route("/zeitgeist")
-def company():
-     return render_template('static/html/business/zeitgeist.html')
+@app.get("/")
+def index(request: Request):
+     return tempatles.TemplateResponse(request, "home.html", {"posts": []})
 
-@app.route("/pgp")
-def encrypt():
-    return send_file('pgp.txt')
-
-if __name__ == "__main__":
-    print("Starting server!")
-    #serve(app, host="0.0.0.0", port=85)
-    app.run(host="127.0.0.1", port=8080, debug=True)#
